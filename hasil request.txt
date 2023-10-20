@@ -1,0 +1,194 @@
+POST  http://localhost:5000/api/v1/users
+data yang dimasukkan :
+{
+    "name": "ady",
+    "email": "ady@gmail.com",
+    "password": "7359",
+    "identity_number": "7359",
+    "identity_type": "KTP",
+    "address": "JL mawar"
+}
+
+hasil : 
+{
+  "data": {
+    "id": 3,
+    "name": "ady",
+    "email": "ady@gmail.com",
+    "password": "7359"
+  }
+}
+
+GET http://localhost:5000/api/v1/users
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "adel",
+      "email": "adel@gmail.com",
+      "password": "735"
+    },
+    {
+      "id": 2,
+      "name": "adeng",
+      "email": "adeng@gmail.com",
+      "password": "735"
+    },
+    {
+      "id": 3,
+      "name": "ady",
+      "email": "ady@gmail.com",
+      "password": "7359"
+    }
+  ]
+}
+
+GET http://localhost:5000/api/v1/users/3
+{
+  "data": {
+    "id": 3,
+    "name": "ady",
+    "email": "ady@gmail.com",
+    "password": "7359",
+    "profile": {
+      "id": 3,
+      "identity_type": "KTP",
+      "identity_number": "7359",
+      "address": "JL mawar",
+      "user_id": 3
+    }
+  }
+}
+
+POST  http://localhost:5000/api/v1/accounts
+data yang dimasukkan :
+{
+  "user_id": 3,
+  "bank_name": "Bank BCA",
+  "bank_account_number": "8888", 
+  "balance": "100000"
+}
+
+
+hasil :
+{
+  "data": {
+    "id": 3,
+    "bank_name": "Bank BCA",
+    "bank_account_number": "8888",
+    "balance": 100000,
+    "user_id": 3
+  }
+}
+
+GET http://localhost:5000/api/v1/accounts
+{
+  "data": [
+    {
+      "id": 1,
+      "bank_name": "Bank Permata",
+      "bank_account_number": "735",
+      "balance": 95000,
+      "user_id": 1
+    },
+    {
+      "id": 2,
+      "bank_name": "Bank MANDIRI",
+      "bank_account_number": "777",
+      "balance": 105000,
+      "user_id": 2
+    },
+    {
+      "id": 3,
+      "bank_name": "Bank BCA",
+      "bank_account_number": "8888",
+      "balance": 100000,
+      "user_id": 3
+    }
+  ]
+}
+
+GET http://localhost:5000/api/v1/accounts/3
+{
+  "data": {
+    "id": 3,
+    "bank_name": "Bank BCA",
+    "bank_account_number": "8888",
+    "balance": 100000,
+    "user_id": 3,
+    "user": {
+      "id": 3,
+      "name": "ady",
+      "email": "ady@gmail.com",
+      "password": "7359",
+      "profile": {
+        "id": 3,
+        "identity_type": "KTP",
+        "identity_number": "7359",
+        "address": "JL mawar",
+        "user_id": 3
+      }
+    }
+  }
+}
+
+POST  http://localhost:5000/api/v1/transactions
+data yang dimasukkan :
+{
+  "source_account_id": 2,
+  "destination_account_id": 3,
+  "amount": 10000
+}
+
+hasil : 
+{
+  "data": {
+    "id": 2,
+    "source_account_id": 2,
+    "destination_account_id": 3,
+    "amount": 10000
+  }
+}
+
+GET http://localhost:5000/api/v1/transactions
+{
+  "data": [
+    {
+      "id": 1,
+      "source_account_id": 1,
+      "destination_account_id": 2,
+      "amount": 5000
+    },
+    {
+      "id": 2,
+      "source_account_id": 2,
+      "destination_account_id": 3,
+      "amount": 10000
+    }
+  ]
+}
+
+GET http://localhost:5000/api/v1/transactions/2
+hasil :
+{
+  "data": {
+    "id": 2,
+    "source_account_id": 2,
+    "destination_account_id": 3,
+    "amount": 10000,
+    "source_account": {
+      "id": 2,
+      "bank_name": "Bank MANDIRI",
+      "bank_account_number": "777",
+      "balance": 95000,
+      "user_id": 2
+    },
+    "destination_account": {
+      "id": 3,
+      "bank_name": "Bank BCA",
+      "bank_account_number": "8888",
+      "balance": 110000,
+      "user_id": 3
+    }
+  }
+}
